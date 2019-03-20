@@ -10,18 +10,17 @@ package roundrobin;
  * @author roher
  */
 public class Proceso {
-    int id, rafaga, prioridad, tiempo_lle;
+    int id, rafaga, prioridad, tiempo_lle, tamanio;
     
     String nombre;
     
-    public Proceso(int id, int rafaga, int prioridad, int tiempo_lle, String nombre){
-    
+    public Proceso(int id, int rafaga, int prioridad, int tiempo_lle, String nombre, int tamanio){
         this.id = id;
         this.rafaga = rafaga;
         this.prioridad = prioridad;
         this.tiempo_lle = tiempo_lle;
         this.nombre = nombre; 
-    
+        this.tamanio = tamanio;
     }
     
     public void setRafaga(int rafaga_nueva){

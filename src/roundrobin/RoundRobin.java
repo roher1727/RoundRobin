@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package roundrobin;
-import java.util.Queue; 
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -24,20 +23,29 @@ public class RoundRobin {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Queue<Proceso> colaPL = new LinkedList <>();
-        Queue<Proceso> colaEjecucion = new LinkedList <>();
+        
         ArrayList<Proceso> listaProcesos = new ArrayList<>(); 
         Tabla tabla = new Tabla();
+        
+        ComparadorProcesos comparador = new ComparadorProcesos();
+        
         boolean nuevo_proceso = true;
-        int id, rafaga, prioridad, tiempo_lle;
+        int id, rafaga, prioridad, tiempo_lle, tamanio_p, tamanio, quantum;
         Scanner sc = new Scanner(System.in);
         Validador validador = new Validador();
         
         String nombre, opcion;
+        System.out.println("\n======================================");
+        System.out.println("\n||     PLANIFICADOR ROUND ROBIN   ||");
+        System.out.println("\n======================================");
+        
+        System.out.println("\n Inserta Quantum del procesador: ");
+        quantum = sc.nextInt();
         
         while(nuevo_proceso){
             
             System.out.println("\n\n===== REGISTRA EL NUEVO PROCESO =====\n\n");
+            sc.nextLine();
             System.out.println("Nombre: ");
             nombre = sc.nextLine();
             System.out.println("\nIdentificador del Proceso: ");
@@ -46,10 +54,12 @@ public class RoundRobin {
             prioridad = sc.nextInt();
             System.out.println("\nTiempo de llegada: ");
             tiempo_lle = sc.nextInt();
-            System.out.println("\nRáfaga");
+            System.out.println("\nRáfaga: ");
             rafaga = sc.nextInt();
-                
-            Proceso temporal = new Proceso(id, rafaga, prioridad, tiempo_lle, nombre);
+            System.out.println("\nTamaño: ");
+            tamanio_p = sc.nextInt();
+            
+            Proceso temporal = new Proceso(id, rafaga, prioridad, tiempo_lle, nombre, tamanio_p);
             
             
             try {
@@ -69,8 +79,12 @@ public class RoundRobin {
                 }
             }
         }
-        
+        Collections.sort(listaProcesos, comparador);
         tabla.imprimir(listaProcesos);
+        
+        AlgoritmoRR algo = new AlgoritmoRR(listaProcesos, quantum);
+        
+        algo.Algoritmo();
     
     }
     
