@@ -20,6 +20,9 @@ public class AlgoritmoRR {
     
     // Procesos para ejecucion en cpu
     Queue<Proceso> colaEjecucion = new LinkedList();
+    Queue<Proceso> colaListo = new LinkedList();
+    Iterator<Proceso> iter;
+    Tabla tablita = new Tabla();
     
     // Procesos listos para ejecutar en CPU
     Queue<Proceso> colaListo = new LinkedList();
@@ -55,13 +58,18 @@ public class AlgoritmoRR {
     }
     
     public void Algoritmo(){
+<<<<<<< HEAD
         int tiempo=0, tiempo_nuevo = 0;
         boolean bandera = true;
         Proceso primer_proceso = colaProcesos.get(0);
+=======
+        int tiempo=0;
+>>>>>>> 741a369dbde810c0583b7fce3a276b55cc81c3ef
         
         while(true){
             iter = colaProcesos.iterator();
             
+<<<<<<< HEAD
             
             if(colaProcesos.isEmpty() && colaEjecucion.isEmpty())
                 break;
@@ -70,6 +78,13 @@ public class AlgoritmoRR {
             while(iter.hasNext()){
                 Proceso equis = iter.next();
                 
+=======
+            if(colaProcesos.isEmpty() && colaEjecucion.isEmpty())
+                break;
+            
+            while(iter.hasNext()){
+                Proceso equis = iter.next();
+>>>>>>> 741a369dbde810c0583b7fce3a276b55cc81c3ef
                 if(tiempo == equis.tiempo_lle){
                     colaListo.add(equis);
                     iter.remove();
@@ -89,6 +104,7 @@ public class AlgoritmoRR {
                 }
                 
             }
+<<<<<<< HEAD
             // Insercion de procesos en la cola de ejecucion
             if(!colaListo.isEmpty() ){
                 Proceso temporalpe = colaListo.peek();
@@ -123,6 +139,34 @@ public class AlgoritmoRR {
                     colaTiempos.add(temporal);
                 }
             }
+=======
+            
+            if(((tiempo) % quantum) == 0 && !colaListo.isEmpty()){
+                Proceso temporalpe = colaListo.remove();
+                colaEjecucion.add(temporalpe);
+            }
+            
+    
+            if(((tiempo) % quantum) == 0 && !colaEjecucion.isEmpty()){
+                Proceso temporalp = colaEjecucion.remove();
+                colaEjecucion.add(temporalp);
+            }
+            
+            if(!colaEjecucion.isEmpty()){
+                if(colaEjecucion.peek().rafaga < 1){
+                    this.tamanio += colaEjecucion.peek().tamanio;
+                    colaEjecucion.remove();
+                }
+            }
+            
+            
+>>>>>>> 741a369dbde810c0583b7fce3a276b55cc81c3ef
+            
+            if(!colaEjecucion.isEmpty()){
+                
+                System.out.println("Proceso " + colaEjecucion.peek().nombre + " en ejecucion " + colaEjecucion.peek().rafaga + " msg en tiempo " + tiempo);
+                colaEjecucion.peek().rafaga--;
+            }
             
             
             // Impresion del status del proceso
@@ -136,8 +180,12 @@ public class AlgoritmoRR {
                 }
             }
             tiempo++;
+<<<<<<< HEAD
             tiempo_nuevo++;
             bandera = true;
+=======
+            
+>>>>>>> 741a369dbde810c0583b7fce3a276b55cc81c3ef
         }
     }
     
