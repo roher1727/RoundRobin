@@ -6,6 +6,7 @@
 package roundrobin;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 /**
  *
@@ -24,5 +25,12 @@ public class Tabla {
                 System.out.println(ps);
             }
         }
-    
+        
+        public void imprimir(Queue<Proceso> lista){
+            System.out.println("| PID |  Proceso  |  TLlegada  |  Prioridad  |  TRafaga(ms)  |");
+
+            for(Proceso ps : lista){
+                System.out.println(ps);
+            }
+        }
 }

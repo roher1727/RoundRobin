@@ -59,7 +59,8 @@ public class RoundRobin {
             System.out.println("\nTamaño: ");
             tamanio_p = sc.nextInt();
             
-            Proceso temporal = new Proceso(id, rafaga, prioridad, tiempo_lle, nombre, tamanio_p);
+            
+            Proceso temporal = new Proceso(id, rafaga, prioridad, tiempo_lle, nombre, tamanio_p, 0);
             
             
             try {
